@@ -1,0 +1,2 @@
+{% url 'professor-edit' form.matricula.value as edit_url %}
+{% include 'professor/modal/modal-content.html' with title="Editar Professor" url=edit_url %}

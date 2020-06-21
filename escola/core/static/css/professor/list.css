@@ -1,0 +1,28 @@
+.card.list-card {
+  align-self: flex-start;
+  margin: 20px 0;
+  height: calc(100% - 40px);
+}
+
+tr .actions > .action:hover {
+  color: var(--purple);
+}
+
+main.container-fluid {
+  overflow: hidden;
+}
+
+.fill-content-flex {
+  flex: 1 1 auto;
+  min-height: 1px;
+}
+
+.tableFixHead {
+  overflow-y: auto;
+  height: 100px;
+}
+
+.tableFixHead thead {
+  position: sticky;
+  top: 0;
+}

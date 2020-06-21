@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/boostrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/fontawesome/css/all.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/select2/select2.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/toastr/toastr.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/jquery-confirm/jquery-confirm.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    {% block styles %}{% endblock styles %}
+  </head>
+  <body>
+    <main class="container-fluid h-100">
+      <div class="main-content">
+        {% block content %}{% endblock content %}
+      </div>
+    </main>
+    {% csrf_token %}
+    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'lib/popper/popper.min.js' %}"></script>
+    <script src="{% static 'lib/select2/select2.min.js' %}"></script>
+    <script src="{% static 'lib/toastr/toastr.min.js' %}"></script>
+    <script src="{% static 'lib/jquery-confirm/jquery-confirm.min.js' %}"></script>
+    <script src="{% static 'lib/jquery-mask/jquery-mask.min.js' %}"></script>
+    <script src="{% static 'lib/boostrap/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/professor/modal.js' %}"></script>
+
+    {% block script %}{% endblock script %}
+  </body>
+</html>

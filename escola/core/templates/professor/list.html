@@ -1,0 +1,128 @@
+{% extends 'template.html' %} 
+{% block styles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/professor/list.css' %}">
+{% endblock styles %}
+{% block content %}
+  <div class="list-card card w-100">
+    <div class="card-header bg-purple text-white">
+      <div class="row">
+        <div class="col-1">
+          <a class="text-white scale" href="{% url 'main-page' %}">
+            <i class="fas fa-arrow-left fa-2x mr-2"></i>
+          </a>
+        </div>
+        <div class="col-10">
+          <h3>
+            Listagem de Professores
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="card-body d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-center row">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-2"> 
+          <form id="search">
+            <div class="input-group">
+              <input type="text" class="form-control purple" name="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-purple" type="submit" id="button-addon2">
+                  <i class="fas fa-search"></i>
+                </span>
+              </div>
+            </div>
+          <form>
+        </div>
+        <div class="col-sm-12 col-md-5 col-lg-3 d-flex justify-content-end mb-2"> 
+            <button class="btn btn-purple btn-md" type="button" id="button-addon2" onclick="show('{% url 'professor-create' %}')">
+              <i class="fas fa-plus mr-1"></i> Adicionar Professor
+            </span>
+        </div>
+      </div>
+      <div class="table-responsive-sm fill-content-flex tableFixHead">
+        <table id="table-professores" class="table table-striped table-borderless">
+          <thead class="text-purple font-weigth-bolder text-center bg-white">
+            <tr>
+              <th scope="col">#Matrícula</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Titulação</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="text-center" >
+            <tr>
+              <td scope="row" colspan="6"> Não achamos nenhum cadastro de professor! </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% include 'professor/modal/base-professor.html' %}
+  
+{% endblock content %}
+{% block script %}
+<script>
+  const professoresUrl = "{% url 'professor-table-list' %}";
+
+  function getProfessores(search=""){
+    $.get(`${professoresUrl}?search=${search}`)
+    .done(function(response) {
+      if(response && !  response.isEmpty()){
+        $('#table-professores').find("tbody").html(response);
+      }else{
+        $('#table-professores').find("tbody").html(`
+          <tr>
+            <td scope="row" colspan="6"> Não achamos nenhum cadastro de professor! </td>
+          </tr>`
+        )
+      }
+    });
+  }
+  $(function(){
+    getProfessores();
+  })
+
+  function deleteProfessor(url){
+    $.confirm({
+      icon: 'fa fa-warning',
+      title: 'font-awesome',
+      type: 'purple',
+      typeAnimated: true,
+      title: 'Confirmação de Deleção',
+      content: 'Você tem certeza que deseja deletar o professor ?',
+      buttons: {
+        confirm: {
+          text: "Sim",
+          btnClass: 'btn-purple',
+          action : function(){
+            $.ajax({
+              url: url,
+              type: 'DELETE'
+            }).then(()=>{
+              go(location.href)
+            });
+          }
+        },
+        cancel: {
+          text:"Não",
+          action: function(){
+            
+          }
+        }
+      }
+    });
+  }
+
+  $("#search").on("submit",(event)=>{
+    event.preventDefault();
+    const search = $(event.target).find("input").val();
+    console.log(search);
+
+    getProfessores(search);
+  });
+
+</script>  
+{% endblock script %}

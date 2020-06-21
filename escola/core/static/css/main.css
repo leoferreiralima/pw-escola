@@ -1,0 +1,24 @@
+.main-card.card {
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
+  max-height: 500px;
+}
+.register li {
+  color: var(--purple);
+  transition: all 200ms;
+}
+
+.register li:hover {
+  cursor: pointer;
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+.register li:hover .actions > .action {
+  color: var(--white);
+}
+
+.register > li > div {
+  font-size: 1.3rem;
+}

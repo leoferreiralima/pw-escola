@@ -1,0 +1,20 @@
+{% load filters %}
+{% for professor in object_list %}
+  <tr>
+    <td scope="row">{{professor.matricula}}</td>
+    <td scope="row">{{professor.nome}}</td>
+    <td scope="row">{{professor.endereco}}</td>
+    <td scope="row">{{professor.telefone |mask:"phone"}}</td>
+    <td scope="row">{{professor.get_titulacao_display}}</td>
+    <td scope="row" class="d-flex justify-content-center">
+      <span class="actions">
+        <a class="action" title="Editar" onclick="show('{% url 'professor-edit' professor.matricula %}')">
+          <i class="fas fa-pen"></i>
+        </a>
+        <a class="action" title="Excluir" onclick="deleteProfessor('{% url 'professor-delete' professor.matricula %}')">
+          <i class="fas fa-trash-alt"></i>
+        </a>
+      </span>
+    </td>
+  </tr>
+{% endfor %}
