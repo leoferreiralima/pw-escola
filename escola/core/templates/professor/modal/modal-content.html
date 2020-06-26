@@ -20,7 +20,7 @@
       {% endif %}
       <div class="form-group">
         <label for="{{ form.nome.id_for_label }}">Nome</label>
-        {{form.nome | class:'form-control purple' }}
+        {{form.nome | class:'form-control purple text-capitalize' }}
         <small id="emailHelp" class="form-text text-muted text-danger">
           {{form.nome.errors }}
         </small>  
@@ -34,7 +34,7 @@
       </div>
       <div class="form-group">
         <label for="{{ form.endereco.id_for_label }}">Endereço</label>
-        {{form.endereco | class:'form-control purple' }}
+        {{form.endereco | class:'form-control purple text-capitalize' }}
         <small id="emailHelp" class="form-text text-muted text-danger">
           {{form.endereco.errors }}
         </small>  
@@ -63,6 +63,7 @@
     alert(error);
   }).addSanitize("telefone",(telefone)=> (telefone.replace(/\D/g, '')))
   .addSanitize("nome",(nome)=> (nome.toLowerCase()))
+  .addSanitize("endereco",(endereco)=> (endereco.toLowerCase()))
   .init();
 
   $(".select2").find("option[value='']").text("Selecione uma opção");
