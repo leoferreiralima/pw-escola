@@ -26,3 +26,8 @@ main.container-fluid {
   position: sticky;
   top: 0;
 }
+
+.table tbody tr > td {
+  vertical-align: middle;
+  text-transform: capitalize;
+}

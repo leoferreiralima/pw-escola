@@ -62,6 +62,7 @@
   }).onFail(()=>{
     alert(error);
   }).addSanitize("telefone",(telefone)=> (telefone.replace(/\D/g, '')))
+  .addSanitize("nome",(nome)=> (nome.toLowerCase()))
   .init();
 
   $(".select2").find("option[value='']").text("Selecione uma opção");
